@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://scenes/Character.tscn" type="PackedScene" id=1]
+
+[node name="World" type="Node"]
+
+[node name="Character" parent="." instance=ExtResource( 1 )]
+position = Vector2( 126.665, 301.602 )
+booster_thrust = 10
