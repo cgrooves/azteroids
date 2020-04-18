@@ -6,4 +6,3 @@
 
 [node name="Character" parent="." instance=ExtResource( 1 )]
 position = Vector2( 126.665, 301.602 )
-booster_thrust = 10

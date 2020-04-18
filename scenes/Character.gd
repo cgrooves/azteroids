@@ -1,38 +1,38 @@
 extends RigidBody2D
 
 # Script variables
-export (int) var booster_thrust
+export (int) var thrust_mag
+export (int) var torque_mag
 
 # Member variables
-var left_thrust = 0.0
-var right_thrust = 0.0
-var forward_thrust = 0.0
+var rotation_direction = 0.0
+var thrust = Vector2(0,0)
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
-
+	pass
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	# Handle the booster limits
-	pass
+	get_input()
 
-func _unhandled_key_input(event):
+func get_input():
 	
-	if event.is_action("booster_port"):
-		left_thrust += booster_thrust
-		print("left press")
-		
-	if event.is_action("booster_stbd"):
-		right_thrust += booster_thrust
-		print("right press")
-		
-	if event.is_action("ui_up"):
-		forward_thrust += booster_thrust
-		print("up press")
+	# Handle forward thrust
+	if Input.is_action_pressed("booster_forward"):
+		thrust = Vector2(thrust_mag, 0)
 	else:
-		forward_thrust = 0
+		thrust = Vector2()
+	
+	# Handle rotations
+	rotation_direction = 0.0
+	if Input.is_action_pressed("booster_port"):
+		rotation_direction -= 1
+	if Input.is_action_pressed("booster_stbd"):
+		rotation_direction += 1
+
 
 func _physics_process(delta):
-	apply_central_impulse(Vector2(forward_thrust, self.rotation))
+	add_central_force(thrust.rotated(self.rotation))
+	add_torque(rotation_direction * torque_mag)
