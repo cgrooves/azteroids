@@ -10,8 +10,8 @@ radius = 35.2996
 linear_damp = 50.0
 angular_damp = 30.0
 script = ExtResource( 2 )
-thrust_mag = 50
-torque_mag = 1000
+thrust_mag = 250
+torque_mag = 1500
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 1 )
