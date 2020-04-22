@@ -3,20 +3,30 @@ extends ScreenActor
 # Script variables
 export (int) var thrust_mag
 export (int) var torque_mag
+export (int) var firing_frame_delay
+
+onready var pdc = preload("res://src/PDC.tscn")
 
 # Member variables
 var rotation_direction = 0.0
 var thrust = Vector2(0,0)
+var firing = false
+var firing_frames = 0
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass
+	._ready()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	# Handle the booster limits
 	get_input()
+	
+	# handle firing
+	if firing and firing_frames == firing_frame_delay:
+		get_parent().add_child(pdc.instance())
+		firing_frames = 0
 
 func get_input():
 	
@@ -32,7 +42,14 @@ func get_input():
 		rotation_direction -= 1
 	if Input.is_action_pressed("booster_stbd"):
 		rotation_direction += 1
-
+	
+	# Handle firing
+	if Input.is_action_pressed("fire"):
+		firing = true
+		firing_frames += 1
+	elif Input.is_action_just_released("fire"):
+		firing = false
+		# reset timer
 ##
 # Move the character
 func _integrate_forces(state):
