@@ -17,7 +17,7 @@ _global_script_class_icons={
 
 config/name="Azturdoids"
 config/description="An asteroids clone."
-run/main_scene="res://scenes/MainGame.tscn"
+run/main_scene="res://src/MainGame.tscn"
 
 [input]
 
