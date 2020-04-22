@@ -1,9 +1,18 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://src/Character.tscn" type="PackedScene" id=1]
-
+[ext_resource path="res://src/Asteroid.tscn" type="PackedScene" id=2]
 
 [node name="World" type="Node"]
 
 [node name="Character" parent="." instance=ExtResource( 1 )]
-position = Vector2( 126.665, 301.602 )
+position = Vector2( 321.467, 285.198 )
+
+[node name="Asteroid" parent="." instance=ExtResource( 2 )]
+position = Vector2( 533.142, 143.538 )
+
+[node name="Asteroid2" parent="." instance=ExtResource( 2 )]
+position = Vector2( 485.979, 354.744 )
+
+[node name="Asteroid3" parent="." instance=ExtResource( 2 )]
+position = Vector2( 658.225, 244.015 )
