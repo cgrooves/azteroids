@@ -13,6 +13,7 @@ script = ExtResource( 1 )
 thrust_mag = 250
 torque_mag = 1500
 firing_frame_delay = 4
+pdc_power = 1000
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 1 )

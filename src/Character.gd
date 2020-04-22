@@ -4,6 +4,7 @@ extends ScreenActor
 export (int) var thrust_mag
 export (int) var torque_mag
 export (int) var firing_frame_delay
+export (int) var pdc_power
 
 onready var pdc = preload("res://src/PDC.tscn")
 
@@ -25,14 +26,17 @@ func _process(delta):
 	
 	# handle firing
 	if firing and firing_frames == firing_frame_delay:
-		get_parent().add_child(pdc.instance())
+		var new_pdc = pdc.instance()
+		var pdc_impulse = thrust + Vector2(pdc_power, 0).rotated(self.rotation)
+		new_pdc.apply_central_impulse(pdc_impulse)
+		get_parent().add_child(new_pdc)
 		firing_frames = 0
 
 func get_input():
 	
 	# Handle forward thrust
 	if Input.is_action_pressed("booster_forward"):
-		thrust = Vector2(thrust_mag, 0)
+		thrust = Vector2(thrust_mag, 0).rotated(self.rotation)
 	else:
 		thrust = Vector2()
 	
@@ -53,7 +57,7 @@ func get_input():
 ##
 # Move the character
 func _integrate_forces(state):
-	add_central_force(thrust.rotated(self.rotation))
+	add_central_force(thrust)
 	add_torque(rotation_direction * torque_mag)
 	
 	._integrate_forces(state)
