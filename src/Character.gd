@@ -5,7 +5,6 @@ export (int) var thrust_mag
 export (int) var torque_mag
 export (int) var firing_frame_delay
 export (int) var pdc_power
-export (Vector2) var pdc_cannon_pos
 
 onready var pdc = preload("res://src/PDC.tscn")
 
@@ -19,8 +18,6 @@ var firing_frames = 0
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	._ready()
-	# position the PDC cannon
-	get_node("PDC_cannon").set_position(pdc_cannon_pos)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -31,16 +28,17 @@ func _process(delta):
 	if firing and firing_frames == firing_frame_delay:
 		# instance the PDC
 		var new_pdc = pdc.instance()
-#		pdc.set_
 		
 		# move the round to the ship's offset
-		
+#		new_pdc.global_position = get_node("PDC_cannon").position
+		new_pdc.position = get_node("PDC_cannon").global_position
+		new_pdc.rotation = self.rotation
 		# give it an impulse
 		var pdc_impulse = thrust + Vector2(pdc_power, 0).rotated(self.rotation)
 		new_pdc.apply_central_impulse(pdc_impulse)
 		
 		# parent the pdc
-		get_node("PDC_cannon").add_child(new_pdc)
+		get_parent().add_child(new_pdc)
 		
 		# reset the firing counter
 		firing_frames = 0

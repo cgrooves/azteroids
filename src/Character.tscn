@@ -12,10 +12,9 @@ linear_damp = 50.0
 angular_damp = 30.0
 script = ExtResource( 1 )
 thrust_mag = 250
-torque_mag = 1500
+torque_mag = 2500
 firing_frame_delay = 4
 pdc_power = 1000
-pdc_cannon_pos = Vector2( 50, 0 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 1 )
@@ -24,4 +23,5 @@ shape = SubResource( 1 )
 rotation = 1.5708
 texture = ExtResource( 2 )
 
-[node name="PDC_cannon" type="Node2D" parent="."]
+[node name="PDC_cannon" type="Position2D" parent="."]
+position = Vector2( 40, 0 )
