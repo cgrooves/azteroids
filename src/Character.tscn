@@ -7,6 +7,7 @@
 radius = 35.2996
 
 [node name="Character" type="RigidBody2D"]
+collision_layer = 3
 linear_damp = 50.0
 angular_damp = 30.0
 script = ExtResource( 1 )
@@ -14,6 +15,7 @@ thrust_mag = 250
 torque_mag = 1500
 firing_frame_delay = 4
 pdc_power = 1000
+pdc_cannon_pos = Vector2( 50, 0 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 1 )
@@ -21,3 +23,5 @@ shape = SubResource( 1 )
 [node name="Sprite" type="Sprite" parent="."]
 rotation = 1.5708
 texture = ExtResource( 2 )
+
+[node name="PDC_cannon" type="Node2D" parent="."]

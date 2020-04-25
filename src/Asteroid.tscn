@@ -7,6 +7,7 @@
 radius = 44.1678
 
 [node name="Asteroid" type="RigidBody2D"]
+collision_layer = 5
 mass = 20.0
 script = ExtResource( 2 )
 

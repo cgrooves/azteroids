@@ -47,6 +47,12 @@ fire={
  ]
 }
 
+[layer_names]
+
+2d_physics/layer_1="ScreenObjects"
+2d_physics/layer_2="Player"
+2d_physics/layer_3="Enemies"
+
 [physics]
 
 2d/default_gravity=0
