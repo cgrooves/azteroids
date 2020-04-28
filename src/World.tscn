@@ -12,7 +12,7 @@ position = Vector2( 321.467, 285.198 )
 position = Vector2( 533.142, 143.538 )
 
 [node name="Asteroid2" parent="." instance=ExtResource( 2 )]
-position = Vector2( 485.979, 354.744 )
+position = Vector2( 237.268, 122.614 )
 
 [node name="Asteroid3" parent="." instance=ExtResource( 2 )]
-position = Vector2( 658.225, 244.015 )
+position = Vector2( 766.754, 85.7442 )
