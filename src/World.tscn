@@ -10,6 +10,7 @@ position = Vector2( 321.467, 285.198 )
 
 [node name="Asteroid" parent="." instance=ExtResource( 2 )]
 position = Vector2( 533.142, 143.538 )
+linear_velocity = Vector2( -20, 20 )
 
 [node name="Asteroid2" parent="." instance=ExtResource( 2 )]
 position = Vector2( 237.268, 122.614 )

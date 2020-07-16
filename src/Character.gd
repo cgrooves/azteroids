@@ -49,14 +49,17 @@ func get_input():
 	if Input.is_action_pressed("booster_forward"):
 		thrust = Vector2(thrust_mag, 0).rotated(self.rotation)
 	else:
-		thrust = Vector2()
+		thrust = Vector2(0,0)
 	
 	# Handle rotations
 	rotation_direction = 0.0
 	if Input.is_action_pressed("booster_port"):
 		rotation_direction -= 1
-	if Input.is_action_pressed("booster_stbd"):
+	elif Input.is_action_pressed("booster_stbd"):
 		rotation_direction += 1
+	else:
+		rotation_direction = 0
+		
 	
 	# Handle firing
 	if Input.is_action_pressed("fire"):
@@ -65,10 +68,8 @@ func get_input():
 	elif Input.is_action_just_released("fire"):
 		firing = false
 		# reset timer
-##
-# Move the character
-func _integrate_forces(state):
+		
+func _physics_process(delta):
+	
 	add_central_force(thrust)
 	add_torque(rotation_direction * torque_mag)
-	
-	._integrate_forces(state)

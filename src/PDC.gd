@@ -22,4 +22,5 @@ func _ready():
 #		queue_free()
 
 func _on_body_entered(body):
+	get_parent().remove_child(self)
 	queue_free()
